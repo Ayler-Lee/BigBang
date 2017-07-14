@@ -8,14 +8,14 @@
 
 #import "ViewController.h"
 #import "NSString+Extension.h"
+#import "ALBigBangViewController.h"
 
-static NSString * const testText = @"这是 Pin 里面使用的文本分词功能的代码，哦对了，完全是本地的，准确率有限";
-//static NSString * const testText = @"1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18";
 int colum = 4; // 列数
+
+static NSString * const testText = @"1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18";
 
 @interface ViewController ()
 
-@property (nonatomic, strong) NSMutableArray *subButtons;
 
 @end
 
@@ -24,51 +24,17 @@ int colum = 4; // 列数
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    
-    NSArray *segmentTexts = [testText segment:PINSegmentationOptionsKeepSymbols];
-    
-    for (NSString *text in segmentTexts) {
-//        NSLog(@"%@", text);
-        UIButton *button = [[UIButton alloc] init];
-        [button setTitle:text forState:UIControlStateNormal];
-        button.backgroundColor = [UIColor cyanColor];
-        [button sizeToFit];
-        [self.view addSubview:button];
-        [self.subButtons addObject:button];
-    }
-    
+
     
 }
 
 
-- (void)viewDidLayoutSubviews {
-    [super viewDidLayoutSubviews];
-
-    CGFloat x = 0;
-    CGFloat y = 100;
-    
-    CGFloat margin = 5;
-    
-    for (int i = 0; i < self.subButtons.count; i++) {
-        UIButton *button = self.subButtons[i];
-        CGFloat buttonW = button.bounds.size.width;
-        
-        button.frame = (CGRect){x, y, button.bounds.size};
-        x += buttonW + margin;
-        if (x >= colum * buttonW) {
-            y += button.bounds.size.height + margin;
-            x = 0;
-        }
-    }
-
+- (IBAction)bigbang:(UIButton *)sender {
+    ALBigBangViewController *vc = [ALBigBangViewController new];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
-- (NSMutableArray *)subButtons {
-    if (_subButtons == nil) {
-        _subButtons = [NSMutableArray array];
-    }
-    return _subButtons;
-}
+
 
 /** 数组的蛇形排序 */
 - (void)sortSegment {

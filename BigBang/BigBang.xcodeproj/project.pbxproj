@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3C8AE0A31F18633200D604A2 /* ALSegmentButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C8AE0A21F18633200D604A2 /* ALSegmentButton.m */; };
+		3C8AE0A61F1864B900D604A2 /* ALBigBangViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C8AE0A51F1864B900D604A2 /* ALBigBangViewController.m */; };
 		3C9070241F146B9E003AC0BC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C9070231F146B9E003AC0BC /* main.m */; };
 		3C9070271F146B9E003AC0BC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C9070261F146B9E003AC0BC /* AppDelegate.m */; };
 		3C90702A1F146B9E003AC0BC /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C9070291F146B9E003AC0BC /* ViewController.m */; };
@@ -36,6 +38,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3C8AE0A11F18633200D604A2 /* ALSegmentButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALSegmentButton.h; sourceTree = "<group>"; };
+		3C8AE0A21F18633200D604A2 /* ALSegmentButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ALSegmentButton.m; sourceTree = "<group>"; };
+		3C8AE0A41F1864B900D604A2 /* ALBigBangViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALBigBangViewController.h; sourceTree = "<group>"; };
+		3C8AE0A51F1864B900D604A2 /* ALBigBangViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ALBigBangViewController.m; sourceTree = "<group>"; };
 		3C90701F1F146B9E003AC0BC /* BigBang.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BigBang.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C9070231F146B9E003AC0BC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		3C9070251F146B9E003AC0BC /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -108,6 +114,10 @@
 				3C9070261F146B9E003AC0BC /* AppDelegate.m */,
 				3C9070551F146C15003AC0BC /* NSString+Extension.h */,
 				3C9070561F146C15003AC0BC /* NSString+Extension.m */,
+				3C8AE0A11F18633200D604A2 /* ALSegmentButton.h */,
+				3C8AE0A21F18633200D604A2 /* ALSegmentButton.m */,
+				3C8AE0A41F1864B900D604A2 /* ALBigBangViewController.h */,
+				3C8AE0A51F1864B900D604A2 /* ALBigBangViewController.m */,
 				3C9070281F146B9E003AC0BC /* ViewController.h */,
 				3C9070291F146B9E003AC0BC /* ViewController.m */,
 				3C90702B1F146B9E003AC0BC /* Main.storyboard */,
@@ -281,7 +291,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3C8AE0A31F18633200D604A2 /* ALSegmentButton.m in Sources */,
 				3C90702A1F146B9E003AC0BC /* ViewController.m in Sources */,
+				3C8AE0A61F1864B900D604A2 /* ALBigBangViewController.m in Sources */,
 				3C9070271F146B9E003AC0BC /* AppDelegate.m in Sources */,
 				3C9070241F146B9E003AC0BC /* main.m in Sources */,
 				3C9070571F146C15003AC0BC /* NSString+Extension.m in Sources */,
@@ -524,6 +536,7 @@
 				3C90704E1F146B9E003AC0BC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3C90704F1F146B9E003AC0BC /* Build configuration list for PBXNativeTarget "BigBangTests" */ = {
 			isa = XCConfigurationList;
@@ -532,6 +545,7 @@
 				3C9070511F146B9E003AC0BC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3C9070521F146B9E003AC0BC /* Build configuration list for PBXNativeTarget "BigBangUITests" */ = {
 			isa = XCConfigurationList;
@@ -540,6 +554,7 @@
 				3C9070541F146B9E003AC0BC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
