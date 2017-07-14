@@ -74,11 +74,39 @@ static NSString * const testText = @"这是 Pin 里面使用的文本分词功�
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     UITouch *touch = touches.anyObject;
-    CGPoint startPoint = [touch preciseLocationInView:self.view];
+    CGPoint startPoint = [touch locationInView:self.view];
+    
+    if ([touch.view isKindOfClass:UIButton.class]) {
+        UIButton *tapButton = (UIButton *)touch.view;
+        self.startSelect = YES;
+    }
+    self.startSelect = !self.startSelect;
     self.startPoint = startPoint;
     NSLog(@"%s --- %@", __func__, NSStringFromCGPoint(startPoint));
 }
 
+- (void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    UITouch *touch = touches.anyObject;
+    CGPoint movePoint = [touch preciseLocationInView:self.view];
+    
+    for (UIButton *button in self.subButtons) {
+        CGPoint point = [self.view convertPoint:movePoint toView:button];
+//        NSLog(@"%@ --- %@", NSStringFromCGPoint(movePoint), NSStringFromCGPoint(point));
+        if ([button pointInside:point withEvent:event]) {
+            button.selected = self.startSelect;
+            NSLog(@"%@", button);
+        }
+    }
+//    CGPoint offset = CGPointMake(movePoint.x - self.startPoint.x, movePoint.y - self.startPoint.y);
+//    NSLog(@"%s --- %@", __func__, NSStringFromCGPoint(offset));
+
+}
+
+- (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    UITouch *touch = touches.anyObject;
+    CGPoint endPoint = [touch preciseLocationInView:self.view];
+    NSLog(@"%s --- %@", __func__, NSStringFromCGPoint(endPoint));
+}
 #pragma mark - Getter
 
 - (NSMutableArray *)subButtons {

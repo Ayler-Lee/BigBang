@@ -21,16 +21,15 @@
 
 - (void)setupUI {
     self.layer.cornerRadius = 5;
-//    self.layer.borderColor = [UIColor blackColor].CGColor;
     self.layer.borderWidth = 0.5;
+    
     [self setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [self setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
     [self setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
     
     self.backgroundColor = [UIColor whiteColor];
-    
-//    [self addTarget:self action:@selector(buttonSelect:) forControlEvents:UIControlEventTouchUpInside];
-//    [self addTarget:self action:@selector(buttonSelectCancel:) forControlEvents:UIControlEventTouchCancel];
+    self.adjustsImageWhenHighlighted = NO;
+
 }
 
 - (void)layoutSubviews {
@@ -38,26 +37,23 @@
     
 }
 
+
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    
     self.selected = !self.selected;
+    NSLog(@"button ---- begin");
+    [self.nextResponder touchesBegan:touches withEvent:event]; // 传递给下一级响应者 superview 或 viewcontroller
 }
-- (void)buttonSelect:(UIButton *)sender {
-    sender.selected = !sender.selected;
-}
-
-- (void)buttonSelectCancel:(UIButton *)sender {
-    sender.selected = !sender.selected;
-}
-
-- (void)setHighlighted:(BOOL)highlighted {
-//    [super setHighlighted:highlighted];
-//    if (highlighted) {
-//        self.backgroundColor = [UIColor redColor];
-//    } else {
-//        self.backgroundColor = [UIColor whiteColor];
-//    }
+//- (void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+//    NSLog(@"button %@---- moved", self);
 //
-}
+//    [self.nextResponder touchesMoved:touches withEvent:event];
+//}
+//- (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+////    [self.nextResponder touchesEnded:touches withEvent:event];
+//    NSLog(@"button ---- end");
+//
+//}
 
 - (void)setSelected:(BOOL)selected {
     [super setSelected:selected];
