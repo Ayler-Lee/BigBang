@@ -12,7 +12,7 @@
 
 #define SCREEN_WIDTH [UIScreen mainScreen].bounds.size.width
 
-static NSString * const testText = @"这是 Pin 里面使用的文本分词功能的代码，哦对了，完全是本地的，准确率有限";
+static NSString * const testText = @"现实的精华就是匮乏，一种普遍而永恒的欠缺。这个世界上的一切都不够人们受用。食物不够，爱不够，正义不够，时间永远不够。即使我们有了足够的钱、时间和爱，我们找到了和这个世界和谐相处的方法，安宁很快会变成无聊。无聊很快会变成一种新的匮乏，欲望的匮乏。";
 
 @interface ALBigBangViewController ()
 
@@ -21,7 +21,7 @@ static NSString * const testText = @"这是 Pin 里面使用的文本分词功�
 
 @property (nonatomic, assign) CGPoint startPoint;
 
-@property (nonatomic, strong) NSMutableArray *subButtons;
+@property (nonatomic, strong) NSMutableArray<ALSegmentButton *> *subButtons;
 
 @end
 
@@ -35,10 +35,9 @@ static NSString * const testText = @"这是 Pin 里面使用的文本分词功�
     NSArray *segmentTexts = [testText segment:PINSegmentationOptionsKeepSymbols];
     
     for (NSString *text in segmentTexts) {
-        //        NSLog(@"%@", text);
-        ALSegmentButton *button = [[ALSegmentButton alloc] init];
-        [button setTitle:text forState:UIControlStateNormal];
         
+        ALSegmentButton *button = [[ALSegmentButton alloc] init];
+        button.title = text;
         [self.view addSubview:button];
         [self.subButtons addObject:button];
     }
@@ -49,22 +48,29 @@ static NSString * const testText = @"这是 Pin 里面使用的文本分词功�
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
     
-    CGFloat margin = 10;
+    CGFloat margin = 5;
     
     CGFloat x = margin;
     CGFloat y = 100;
     
     
     for (int i = 0; i < self.subButtons.count; i++) {
-        UIButton *button = self.subButtons[i];
+        ALSegmentButton *button = self.subButtons[i];
         [button sizeToFit];
-        CGFloat buttonW = button.bounds.size.width;
         
         button.frame = (CGRect){x, y, button.bounds.size};
+        if (i >= self.subButtons.count-1) {
+            break;
+        }
+        
+        CGFloat buttonW = button.bounds.size.width;
         x += buttonW + margin;
-        if (x + buttonW >= SCREEN_WIDTH) {
-            y += button.bounds.size.height + margin;
-            x = 0;
+        
+        ALSegmentButton *nextButton = self.subButtons[i+1];
+        CGFloat nextX = x + nextButton.bounds.size.width + margin;
+        if (nextX >= SCREEN_WIDTH) {
+            y += button.bounds.size.height + 15;
+            x = margin;
         }
     }
     
@@ -76,11 +82,11 @@ static NSString * const testText = @"这是 Pin 里面使用的文本分词功�
     UITouch *touch = touches.anyObject;
     CGPoint startPoint = [touch locationInView:self.view];
     
-    if ([touch.view isKindOfClass:UIButton.class]) {
-        UIButton *tapButton = (UIButton *)touch.view;
-        self.startSelect = YES;
+    if ([touch.view isKindOfClass:ALSegmentButton.class]) {
+        ALSegmentButton *tapButton = (ALSegmentButton *)touch.view;
+        self.startSelect = tapButton.selected;
     }
-    self.startSelect = !self.startSelect;
+//    self.startSelect = !self.startSelect;
     self.startPoint = startPoint;
     NSLog(@"%s --- %@", __func__, NSStringFromCGPoint(startPoint));
 }

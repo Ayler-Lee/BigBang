@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ALSegmentButton : UIButton
+@interface ALSegmentButton : UIView
+
+@property (nonatomic, assign) BOOL selected;
+
+@property (nonatomic, copy) NSString *title;
 
 @end
