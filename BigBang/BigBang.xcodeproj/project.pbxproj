@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		3C8AE0A31F18633200D604A2 /* ALSegmentButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C8AE0A21F18633200D604A2 /* ALSegmentButton.m */; };
 		3C8AE0A61F1864B900D604A2 /* ALBigBangViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C8AE0A51F1864B900D604A2 /* ALBigBangViewController.m */; };
+		3C8AE0AC1F1DB8D500D604A2 /* ALSegmentScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C8AE0AB1F1DB8D500D604A2 /* ALSegmentScrollView.m */; };
+		3C8AE0B01F1DED5100D604A2 /* ALSegmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C8AE0AF1F1DED5100D604A2 /* ALSegmentView.m */; };
 		3C9070241F146B9E003AC0BC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C9070231F146B9E003AC0BC /* main.m */; };
 		3C9070271F146B9E003AC0BC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C9070261F146B9E003AC0BC /* AppDelegate.m */; };
 		3C90702A1F146B9E003AC0BC /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C9070291F146B9E003AC0BC /* ViewController.m */; };
@@ -42,6 +44,11 @@
 		3C8AE0A21F18633200D604A2 /* ALSegmentButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ALSegmentButton.m; sourceTree = "<group>"; };
 		3C8AE0A41F1864B900D604A2 /* ALBigBangViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALBigBangViewController.h; sourceTree = "<group>"; };
 		3C8AE0A51F1864B900D604A2 /* ALBigBangViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ALBigBangViewController.m; sourceTree = "<group>"; };
+		3C8AE0AA1F1DB8D500D604A2 /* ALSegmentScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALSegmentScrollView.h; sourceTree = "<group>"; };
+		3C8AE0AB1F1DB8D500D604A2 /* ALSegmentScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ALSegmentScrollView.m; sourceTree = "<group>"; };
+		3C8AE0AD1F1DDE3200D604A2 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		3C8AE0AE1F1DED5100D604A2 /* ALSegmentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALSegmentView.h; sourceTree = "<group>"; };
+		3C8AE0AF1F1DED5100D604A2 /* ALSegmentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ALSegmentView.m; sourceTree = "<group>"; };
 		3C90701F1F146B9E003AC0BC /* BigBang.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BigBang.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C9070231F146B9E003AC0BC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		3C9070251F146B9E003AC0BC /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -116,6 +123,10 @@
 				3C9070561F146C15003AC0BC /* NSString+Extension.m */,
 				3C8AE0A11F18633200D604A2 /* ALSegmentButton.h */,
 				3C8AE0A21F18633200D604A2 /* ALSegmentButton.m */,
+				3C8AE0AA1F1DB8D500D604A2 /* ALSegmentScrollView.h */,
+				3C8AE0AB1F1DB8D500D604A2 /* ALSegmentScrollView.m */,
+				3C8AE0AE1F1DED5100D604A2 /* ALSegmentView.h */,
+				3C8AE0AF1F1DED5100D604A2 /* ALSegmentView.m */,
 				3C8AE0A41F1864B900D604A2 /* ALBigBangViewController.h */,
 				3C8AE0A51F1864B900D604A2 /* ALBigBangViewController.m */,
 				3C9070281F146B9E003AC0BC /* ViewController.h */,
@@ -133,6 +144,7 @@
 			isa = PBXGroup;
 			children = (
 				3C9070231F146B9E003AC0BC /* main.m */,
+				3C8AE0AD1F1DDE3200D604A2 /* PrefixHeader.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -296,6 +308,8 @@
 				3C8AE0A61F1864B900D604A2 /* ALBigBangViewController.m in Sources */,
 				3C9070271F146B9E003AC0BC /* AppDelegate.m in Sources */,
 				3C9070241F146B9E003AC0BC /* main.m in Sources */,
+				3C8AE0B01F1DED5100D604A2 /* ALSegmentView.m in Sources */,
+				3C8AE0AC1F1DB8D500D604A2 /* ALSegmentScrollView.m in Sources */,
 				3C9070571F146C15003AC0BC /* NSString+Extension.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

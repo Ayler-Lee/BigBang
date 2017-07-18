@@ -45,12 +45,12 @@
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     self.selected = !self.selected;
-    NSLog(@"button ---- begin");
+//    NSLog(@"button ---- begin");
     [super touchesBegan:touches withEvent:event];
 }
 
 - (void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    NSLog(@"button ---- moved");
+//    NSLog(@"button ---- moved");
 
     [super touchesMoved:touches withEvent:event];
 }
@@ -61,6 +61,7 @@
 
     return CGSizeMake(self.titleLabel.bounds.size.width + 20, self.titleLabel.bounds.size.height + 10);
 }
+
 - (void)setSelected:(BOOL)selected {
     _selected = selected;
     

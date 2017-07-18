@@ -8,20 +8,20 @@
 
 #import "ALBigBangViewController.h"
 #import "NSString+Extension.h"
-#import "ALSegmentButton.h"
+//#import "ALSegmentButton.h"
+#import "ALSegmentScrollView.h"
+#import "ALSegmentView.h"
 
-#define SCREEN_WIDTH [UIScreen mainScreen].bounds.size.width
 
 static NSString * const testText = @"现实的精华就是匮乏，一种普遍而永恒的欠缺。这个世界上的一切都不够人们受用。食物不够，爱不够，正义不够，时间永远不够。即使我们有了足够的钱、时间和爱，我们找到了和这个世界和谐相处的方法，安宁很快会变成无聊。无聊很快会变成一种新的匮乏，欲望的匮乏。";
 
-@interface ALBigBangViewController ()
+@interface ALBigBangViewController ()<UIScrollViewDelegate>
 
-/** 起始是否是选中 */
-@property (nonatomic, assign) BOOL startSelect;
 
-@property (nonatomic, assign) CGPoint startPoint;
 
-@property (nonatomic, strong) NSMutableArray<ALSegmentButton *> *subButtons;
+
+@property (nonatomic, strong) ALSegmentScrollView *scrollView;
+@property (nonatomic, strong) ALSegmentView *segmentView;
 
 @end
 
@@ -31,16 +31,14 @@ static NSString * const testText = @"现实的精华就是匮乏，一种普遍�
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor lightGrayColor]; //colorWithAlphaComponent:0.5];
+    self.navigationController.navigationBar.translucent = NO;
+    
+//    [self.view addSubview:self.scrollView];
     
     NSArray *segmentTexts = [testText segment:PINSegmentationOptionsKeepSymbols];
     
-    for (NSString *text in segmentTexts) {
-        
-        ALSegmentButton *button = [[ALSegmentButton alloc] init];
-        button.title = text;
-        [self.view addSubview:button];
-        [self.subButtons addObject:button];
-    }
+    self.segmentView = [[ALSegmentView alloc] initWithSegment:segmentTexts];
+    [self.view addSubview:self.segmentView];
     
 }
 
@@ -48,65 +46,17 @@ static NSString * const testText = @"现实的精华就是匮乏，一种普遍�
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
     
-    CGFloat margin = 5;
+//    self.scrollView.frame = CGRectInset(self.view.bounds, 10, 10);
+
+   
     
-    CGFloat x = margin;
-    CGFloat y = 100;
-    
-    
-    for (int i = 0; i < self.subButtons.count; i++) {
-        ALSegmentButton *button = self.subButtons[i];
-        [button sizeToFit];
-        
-        button.frame = (CGRect){x, y, button.bounds.size};
-        if (i >= self.subButtons.count-1) {
-            break;
-        }
-        
-        CGFloat buttonW = button.bounds.size.width;
-        x += buttonW + margin;
-        
-        ALSegmentButton *nextButton = self.subButtons[i+1];
-        CGFloat nextX = x + nextButton.bounds.size.width + margin;
-        if (nextX >= SCREEN_WIDTH) {
-            y += button.bounds.size.height + 15;
-            x = margin;
-        }
-    }
-    
+//    self.scrollView.contentSize = CGSizeMake(self.scrollView.bounds.size.width, y + buttonH + 15);
 }
 
 #pragma mark - 事件响应方法
 
-- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    UITouch *touch = touches.anyObject;
-    CGPoint startPoint = [touch locationInView:self.view];
-    
-    if ([touch.view isKindOfClass:ALSegmentButton.class]) {
-        ALSegmentButton *tapButton = (ALSegmentButton *)touch.view;
-        self.startSelect = tapButton.selected;
-    }
-//    self.startSelect = !self.startSelect;
-    self.startPoint = startPoint;
-    NSLog(@"%s --- %@", __func__, NSStringFromCGPoint(startPoint));
-}
 
-- (void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    UITouch *touch = touches.anyObject;
-    CGPoint movePoint = [touch preciseLocationInView:self.view];
-    
-    for (UIButton *button in self.subButtons) {
-        CGPoint point = [self.view convertPoint:movePoint toView:button];
-//        NSLog(@"%@ --- %@", NSStringFromCGPoint(movePoint), NSStringFromCGPoint(point));
-        if ([button pointInside:point withEvent:event]) {
-            button.selected = self.startSelect;
-            NSLog(@"%@", button);
-        }
-    }
-//    CGPoint offset = CGPointMake(movePoint.x - self.startPoint.x, movePoint.y - self.startPoint.y);
-//    NSLog(@"%s --- %@", __func__, NSStringFromCGPoint(offset));
 
-}
 
 - (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     UITouch *touch = touches.anyObject;
@@ -115,11 +65,15 @@ static NSString * const testText = @"现实的精华就是匮乏，一种普遍�
 }
 #pragma mark - Getter
 
-- (NSMutableArray *)subButtons {
-    if (_subButtons == nil) {
-        _subButtons = [NSMutableArray array];
+- (ALSegmentScrollView *)scrollView {
+    if (_scrollView == nil) {
+        _scrollView = [[ALSegmentScrollView alloc] init];
+        _scrollView.backgroundColor = [UIColor colorWithWhite:0.3 alpha:0.9];
+        _scrollView.delegate = self;
     }
-    return _subButtons;
+    return _scrollView;
 }
+
+
 
 @end

@@ -8,10 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+#define BUTTON_TAG 1000
+
 @interface ALSegmentButton : UIView
 
 @property (nonatomic, assign) BOOL selected;
 
 @property (nonatomic, copy) NSString *title;
 
+@property (nonatomic, assign) NSInteger tag;
 @end
