@@ -9,7 +9,9 @@
 #import "ALSegmentView.h"
 #import "ALSegmentButton.h"
 
-@interface ALSegmentView ()
+@interface ALSegmentView () {
+    BOOL _flag;
+}
 /** 起始是否是选中 */
 @property (nonatomic, assign) BOOL startSelect;
 /** 记录起始点 */
@@ -79,7 +81,6 @@
         }
     }
     
-    
 }
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     UITouch *touch = touches.anyObject;
@@ -88,10 +89,13 @@
     if ([touch.view isKindOfClass:ALSegmentButton.class]) {
         ALSegmentButton *tapButton = (ALSegmentButton *)touch.view;
         self.startSelect = tapButton.selected;
+        _flag = YES;
     }
-    
+
     self.startPoint = startPoint;
-//    NSLog(@"%s --- %@", __func__, NSStringFromCGPoint(startPoint));
+    
+    LOG_BEGIN(self);
+    
     [super touchesBegan:touches withEvent:event];
 }
 
@@ -99,17 +103,35 @@
     UITouch *touch = touches.anyObject;
     CGPoint movePoint = [touch preciseLocationInView:self];
     
-    for (UIButton *button in self.subButtons) {
+    for (ALSegmentButton *button in self.subButtons) {
         CGPoint point = [self convertPoint:movePoint toView:button];
-        //        NSLog(@"%@ --- %@", NSStringFromCGPoint(movePoint), NSStringFromCGPoint(point));
         if ([button pointInside:point withEvent:event]) {
+            if (!_flag) {
+                self.startSelect = !button.selected;
+                _flag = YES;
+            }
             button.selected = self.startSelect;
-//            NSLog(@"%@", button);
+            
         }
     }
-    //    CGPoint offset = CGPointMake(movePoint.x - self.startPoint.x, movePoint.y - self.startPoint.y);
-    //    NSLog(@"%s --- %@", __func__, NSStringFromCGPoint(offset));
+
+    LOG_MOVE;
     
+    [super touchesMoved:touches withEvent:event];
+}
+
+- (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    _flag = NO;
+    LOG_END(self);
+    
+    NSString *text = @"";
+    for (ALSegmentButton *button in self.subButtons) {
+        if (button.selected) {
+            text = [text stringByAppendingString:button.title];
+        }
+    }
+    NSLog(@"%@", text);
+    [super touchesEnded:touches withEvent:event];
 }
 
 - (NSMutableArray *)subButtons {

@@ -45,14 +45,21 @@
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     self.selected = !self.selected;
-//    NSLog(@"button ---- begin");
+    LOG_BEGIN(self);
+    
     [super touchesBegan:touches withEvent:event];
 }
 
 - (void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-//    NSLog(@"button ---- moved");
-
+    LOG_MOVE;
+    
     [super touchesMoved:touches withEvent:event];
+}
+
+- (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    LOG_END(self);
+    
+    [super touchesEnded:touches withEvent:event];
 }
 
 - (CGSize)sizeThatFits:(CGSize)size {

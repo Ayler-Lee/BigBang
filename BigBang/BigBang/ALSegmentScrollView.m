@@ -19,7 +19,8 @@
 */
 
 - (void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    NSLog(@"%@ --- moved", self.class);
+    NSLog(@"ALSegmentScrollView --- moved");
     [super touchesMoved:touches withEvent:event];
 }
+
 @end

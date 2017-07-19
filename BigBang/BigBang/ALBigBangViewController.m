@@ -48,21 +48,32 @@ static NSString * const testText = @"现实的精华就是匮乏，一种普遍�
     
 //    self.scrollView.frame = CGRectInset(self.view.bounds, 10, 10);
 
-   
+    self.segmentView.frame = self.view.bounds;
     
 //    self.scrollView.contentSize = CGSizeMake(self.scrollView.bounds.size.width, y + buttonH + 15);
 }
 
 #pragma mark - 事件响应方法
-
-
-
-
-- (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    UITouch *touch = touches.anyObject;
-    CGPoint endPoint = [touch preciseLocationInView:self.view];
-    NSLog(@"%s --- %@", __func__, NSStringFromCGPoint(endPoint));
-}
+//
+//- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+//    LOG_BEGIN(self.view);
+//    [super touchesBegan:touches withEvent:event];
+//}
+//
+//- (void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+//    LOG_MOVE;
+//    [super touchesMoved:touches withEvent:event];
+//}
+//
+//- (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+//    UITouch *touch = touches.anyObject;
+//    CGPoint endPoint = [touch preciseLocationInView:self.view];
+//    
+//    LOG_END(self.view);
+//    
+//    [super touchesEnded:touches withEvent:event];
+//
+//}
 #pragma mark - Getter
 
 - (ALSegmentScrollView *)scrollView {

@@ -123,12 +123,12 @@
 				3C9070561F146C15003AC0BC /* NSString+Extension.m */,
 				3C8AE0A11F18633200D604A2 /* ALSegmentButton.h */,
 				3C8AE0A21F18633200D604A2 /* ALSegmentButton.m */,
-				3C8AE0AA1F1DB8D500D604A2 /* ALSegmentScrollView.h */,
-				3C8AE0AB1F1DB8D500D604A2 /* ALSegmentScrollView.m */,
 				3C8AE0AE1F1DED5100D604A2 /* ALSegmentView.h */,
 				3C8AE0AF1F1DED5100D604A2 /* ALSegmentView.m */,
 				3C8AE0A41F1864B900D604A2 /* ALBigBangViewController.h */,
 				3C8AE0A51F1864B900D604A2 /* ALBigBangViewController.m */,
+				3C8AE0AA1F1DB8D500D604A2 /* ALSegmentScrollView.h */,
+				3C8AE0AB1F1DB8D500D604A2 /* ALSegmentScrollView.m */,
 				3C9070281F146B9E003AC0BC /* ViewController.h */,
 				3C9070291F146B9E003AC0BC /* ViewController.m */,
 				3C90702B1F146B9E003AC0BC /* Main.storyboard */,
@@ -462,6 +462,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = QNJA87PUWE;
+				GCC_PREFIX_HEADER = BigBang/PrefixHeader.pch;
 				INFOPLIST_FILE = BigBang/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = cn.AylerLee.BigBang;
@@ -474,6 +475,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = QNJA87PUWE;
+				GCC_PREFIX_HEADER = BigBang/PrefixHeader.pch;
 				INFOPLIST_FILE = BigBang/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = cn.AylerLee.BigBang;
