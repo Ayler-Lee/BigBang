@@ -63,10 +63,11 @@
 }
 
 - (CGSize)sizeThatFits:(CGSize)size {
-    [self.titleLabel sizeToFit];
-    NSLog(@"%@", NSStringFromCGSize(self.titleLabel.bounds.size));
+    CGSize labelSize = [self.titleLabel sizeThatFits:size];
+    
+//    NSLog(@"%@ -- %@",NSStringFromCGSize(size), NSStringFromCGSize(labelSize));
 
-    return CGSizeMake(self.titleLabel.bounds.size.width + 20, self.titleLabel.bounds.size.height + 10);
+    return CGSizeMake(labelSize.width + 20, labelSize.height + 10);
 }
 
 - (void)setSelected:(BOOL)selected {
@@ -76,7 +77,8 @@
         self.backgroundColor = [UIColor cyanColor];
         self.titleLabel.textColor = [UIColor whiteColor];
     } else {
-        self.backgroundColor = [UIColor whiteColor];
+        
+        [self checkSymbol:self.title];
         self.titleLabel.textColor = [UIColor blackColor];
     }
 }
@@ -85,6 +87,21 @@
     _title = title.copy;
     
     self.titleLabel.text = title;
+    [self checkSymbol:title];
+}
+
+- (BOOL)checkSymbol:(NSString *)string {
     
+    NSString *symbol = nil;
+    [NSMutableCharacterSet punctuationCharacterSet];
+    [NSCharacterSet punctuationCharacterSet];
+    BOOL isSymbol = [[NSScanner scannerWithString:string] scanCharactersFromSet:[NSCharacterSet punctuationCharacterSet] intoString:&symbol];
+//    NSLog(@"%@ -- %@ --- %d", string, symbol, isSymbol);
+    if (isSymbol) {
+        self.backgroundColor = [UIColor lightGrayColor];
+    } else {
+        self.backgroundColor = [UIColor whiteColor];
+    }
+    return isSymbol;
 }
 @end

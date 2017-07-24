@@ -8,7 +8,6 @@
 
 #import "ALBigBangViewController.h"
 #import "NSString+Extension.h"
-//#import "ALSegmentButton.h"
 #import "ALSegmentScrollView.h"
 #import "ALSegmentView.h"
 
@@ -30,7 +29,7 @@ static NSString * const testText = @"现实的精华就是匮乏，一种普遍�
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.view.backgroundColor = [UIColor lightGrayColor]; //colorWithAlphaComponent:0.5];
+    self.view.backgroundColor = [UIColor redColor]; //colorWithAlphaComponent:0.5];
     self.navigationController.navigationBar.translucent = NO;
     
 //    [self.view addSubview:self.scrollView];
@@ -46,10 +45,7 @@ static NSString * const testText = @"现实的精华就是匮乏，一种普遍�
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
     
-//    self.scrollView.frame = CGRectInset(self.view.bounds, 10, 10);
-
     self.segmentView.frame = self.view.bounds;
-    
 //    self.scrollView.contentSize = CGSizeMake(self.scrollView.bounds.size.width, y + buttonH + 15);
 }
 

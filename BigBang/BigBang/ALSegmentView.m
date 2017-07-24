@@ -8,6 +8,7 @@
 
 #import "ALSegmentView.h"
 #import "ALSegmentButton.h"
+#import <AssetsLibrary/AssetsLibrary.h>
 
 @interface ALSegmentView () {
     BOOL _flag;
@@ -16,6 +17,8 @@
 @property (nonatomic, assign) BOOL startSelect;
 /** 记录起始点 */
 @property (nonatomic, assign) CGPoint startPoint;
+@property (nonatomic, assign) NSInteger startIndex;
+
 @property (nonatomic, strong) NSMutableArray<ALSegmentButton *> *subButtons;
 
 @end
@@ -37,7 +40,7 @@
 }
 
 - (void)setupSubviews {
-    
+    self.backgroundColor = [UIColor colorWithWhite:0.1 alpha:0.9];
     for (int i = 0; i < self.segmentText.count; i++) {
         NSString *text = self.segmentText[i];
         
@@ -82,6 +85,7 @@
     }
     
 }
+
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     UITouch *touch = touches.anyObject;
     CGPoint startPoint = [touch locationInView:self];
@@ -89,6 +93,8 @@
     if ([touch.view isKindOfClass:ALSegmentButton.class]) {
         ALSegmentButton *tapButton = (ALSegmentButton *)touch.view;
         self.startSelect = tapButton.selected;
+        self.startIndex = tapButton.tag;
+        NSLog(@"%ld", tapButton.tag);
         _flag = YES;
     }
 
@@ -101,7 +107,11 @@
 
 - (void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     UITouch *touch = touches.anyObject;
-    CGPoint movePoint = [touch preciseLocationInView:self];
+    CGPoint movePoint = [touch locationInView:self];
+    
+    CGFloat dx = movePoint.x - self.startPoint.x;
+    CGFloat dy = movePoint.y - self.startPoint.y;
+    
     
     for (ALSegmentButton *button in self.subButtons) {
         CGPoint point = [self convertPoint:movePoint toView:button];
@@ -111,10 +121,9 @@
                 _flag = YES;
             }
             button.selected = self.startSelect;
-            
         }
     }
-
+    
     LOG_MOVE;
     
     [super touchesMoved:touches withEvent:event];
@@ -129,10 +138,22 @@
         if (button.selected) {
             text = [text stringByAppendingString:button.title];
         }
+
+    }    NSLog(@"%@", text);
+    if ([self.delegate respondsToSelector:@selector(segmentView:didSelectText:)]) {
+        [self.delegate segmentView:self didSelectText:text];
     }
-    NSLog(@"%@", text);
+    
     [super touchesEnded:touches withEvent:event];
 }
+
+- (CGSize)sizeThatFits:(CGSize)size {
+    ALSegmentButton *lastButton = self.subButtons.lastObject;
+    NSLog(@"%@", lastButton);
+    return CGSizeMake(SCREEN_WIDTH, CGRectGetMaxY(lastButton.frame));
+}
+
+#pragma mark - Getter
 
 - (NSMutableArray *)subButtons {
     if (_subButtons == nil) {

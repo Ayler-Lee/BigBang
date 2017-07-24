@@ -16,7 +16,7 @@
 
 #define LOG_BEGIN(view) NSLog(@"%@ --- begin %@", self.class, NSStringFromCGPoint([touches.anyObject locationInView:view]))
 
-#define LOG_MOVE NSLog(@"%@ --- move", self.class)
+#define LOG_MOVE //NSLog(@"%@ --- move", self.class)
 
 #define LOG_END(view) NSLog(@"%@ --- end %@", self.class, NSStringFromCGPoint([touches.anyObject locationInView:view]))
 
