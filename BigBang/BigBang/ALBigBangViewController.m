@@ -12,7 +12,7 @@
 #import "ALSegmentView.h"
 
 
-static NSString * const testText = @"现实的精华就是匮乏，一种普遍而永恒的欠缺。这个世界上的一切都不够人们受用。食物不够，爱不够，正义不够，时间永远不够。即使我们有了足够的钱、时间和爱，我们找到了和这个世界和谐相处的方法，安宁很快会变成无聊。无聊很快会变成一种新的匮乏，欲望的匮乏。";
+//static NSString * const testText = @"现实的精华就是匮乏，一种普遍而永恒的欠缺。这个世界上的一切都不够人们受用。食物不够，爱不够，正义不够，时间永远不够。即使我们有了足够的钱、时间和爱，我们找到了和这个世界和谐相处的方法，安宁很快会变成无聊。无聊很快会变成一种新的匮乏，欲望的匮乏。";
 
 @interface ALBigBangViewController ()<UIScrollViewDelegate>
 
@@ -34,7 +34,7 @@ static NSString * const testText = @"现实的精华就是匮乏，一种普遍�
     
 //    [self.view addSubview:self.scrollView];
     
-    NSArray *segmentTexts = [testText segment:PINSegmentationOptionsKeepSymbols];
+    NSArray *segmentTexts = [self.segmentText segment:PINSegmentationOptionsKeepSymbols];
     
     self.segmentView = [[ALSegmentView alloc] initWithSegment:segmentTexts];
     [self.view addSubview:self.segmentView];

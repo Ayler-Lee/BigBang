@@ -10,4 +10,6 @@
 
 @interface ALBigBangViewController : UIViewController
 
+@property (nonatomic, copy) NSString *segmentText;
+
 @end
