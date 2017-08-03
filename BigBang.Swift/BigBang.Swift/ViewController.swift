@@ -15,11 +15,11 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    @IBAction func bigbang(_ sender: UIButton) {
+        let stringlist = sender.titleLabel?.text?.segment(PINSegmentationOptions.KeepSymbols);
+        
+        print(stringlist ?? "nofragment");
     }
-
 
 }
 

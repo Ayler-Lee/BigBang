@@ -16,9 +16,6 @@
 
 @interface ALBigBangViewController ()<UIScrollViewDelegate>
 
-
-
-
 @property (nonatomic, strong) ALSegmentScrollView *scrollView;
 @property (nonatomic, strong) ALSegmentView *segmentView;
 
@@ -37,16 +34,23 @@
     NSArray *segmentTexts = [self.segmentText segment:PINSegmentationOptionsKeepSymbols];
     
     self.segmentView = [[ALSegmentView alloc] initWithSegment:segmentTexts];
-    [self.view addSubview:self.segmentView];
+//    [self.view addSubview:self.segmentView];
+    [self.scrollView addSubview:self.segmentView];
+    [self.view addSubview:self.scrollView];
     
 }
 
 
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
+    CGSize viewSize = self.segmentView.frame.size;
     
-    self.segmentView.frame = self.view.bounds;
-//    self.scrollView.contentSize = CGSizeMake(self.scrollView.bounds.size.width, y + buttonH + 15);
+    self.scrollView.frame = CGRectInset(self.view.bounds, 50, 50);
+    
+    [self.segmentView sizeToFit];
+    self.scrollView.contentSize = self.segmentView.bounds.size;
+
+    NSLog(@"%@ --- viewsize: %@", NSStringFromCGSize(self.scrollView.contentSize), NSStringFromCGSize(viewSize));
 }
 
 #pragma mark - 事件响应方法

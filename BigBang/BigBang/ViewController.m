@@ -9,10 +9,9 @@
 #import "ViewController.h"
 #import "NSString+Extension.h"
 #import "ALBigBangViewController.h"
+#import "ALBigBangCollectionVC.h"
 
-int colum = 4; // 列数
 
-static NSString * const testText = @"1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18";
 
 @interface ViewController ()
 
@@ -30,13 +29,18 @@ static NSString * const testText = @"1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 1
 
 
 - (IBAction)bigbang:(UIButton *)sender {
-    ALBigBangViewController *vc = [ALBigBangViewController new];
+//    ALBigBangViewController *vc = [ALBigBangViewController new];
+//    vc.segmentText = sender.titleLabel.text;
+//    [self.navigationController pushViewController:vc animated:YES];
+    ALBigBangCollectionVC *vc = [[ALBigBangCollectionVC alloc] init];
     vc.segmentText = sender.titleLabel.text;
     [self.navigationController pushViewController:vc animated:YES];
+    
 }
 
 
-
+int colum = 4; // 列数
+static NSString * const testText = @"1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18";
 /** 数组的蛇形排序 */
 - (void)sortSegment {
     

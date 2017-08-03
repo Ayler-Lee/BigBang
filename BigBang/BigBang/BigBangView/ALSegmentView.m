@@ -28,7 +28,7 @@
 - (instancetype)initWithSegment:(NSArray *)texts {
     self.segmentText = texts;
     self.backgroundColor = [UIColor redColor];
-    return [self initWithFrame:CGRectMake(0, 0, 300, 300)];
+    return [self initWithFrame:CGRectMake(0, 0, 10, 30)];
 }
 - (instancetype)initWithFrame:(CGRect)frame
 {
@@ -66,7 +66,7 @@
         [button sizeToFit];
         
         button.frame = (CGRect){x, y, button.bounds.size};
-        
+        NSLog(@"button.frame == %@", NSStringFromCGRect(button.frame));
         if (i >= self.subButtons.count - 1) {
             break;
         }
@@ -83,7 +83,6 @@
             x = margin;
         }
     }
-    
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
@@ -150,7 +149,7 @@
 - (CGSize)sizeThatFits:(CGSize)size {
     ALSegmentButton *lastButton = self.subButtons.lastObject;
     NSLog(@"%@", lastButton);
-    return CGSizeMake(SCREEN_WIDTH, CGRectGetMaxY(lastButton.frame));
+    return CGSizeMake(self.superview.bounds.size.width, CGRectGetMaxY(lastButton.frame));
 }
 
 #pragma mark - Getter
